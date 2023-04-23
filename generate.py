@@ -28,29 +28,21 @@ human_names = pandas.read_csv(HUMAN_NAMES, delimiter="\t", usecols=["I", "MName"
 assert cat_names.loc[1] is not None
 assert human_names.loc[1] is not None
 
-logging.info(f"Human example {human_names.loc[1].MName}")
-logging.info(f"Cat example {cat_names.sample().Name}")
-logging.info(f"Cat example {cat_names.loc[1].Name}")
+actors = pandas.DataFrame(columns=["id", "name", "age", "created", "category"])
 
+logging.info("Creating actors")
 for i in range(0, CATS-1):
-    cats.append({"id":str(uuid.uuid4()), "name": cat_names.sample().Name.values[0], "age": randint(0, 20), "created": datetime.now().isoformat()})
+    actors.loc[len(actors)] = {"id":str(uuid.uuid4()), "name": cat_names.sample().Name.values[0], "age": randint(0, 20), "created": datetime.now().isoformat(), "category": "cat"}
 
 for i in range(0, ZOMBIES-1):
-    zombies.append({"id":str(uuid.uuid4()), "name": human_names.sample().MName.values[0], "age": randint(0, 80), "created": datetime.now().isoformat()})
+    actors.loc[len(actors)] = {"id":str(uuid.uuid4()), "name": cat_names.sample().Name.values[0], "age": randint(0, 20), "created": datetime.now().isoformat(), "category": "zombie"}
 
 for i in range(0, PIRATES-1):
-    pirates.append({"id": str(uuid.uuid4()), "name": human_names.sample().MName.values[0], "age": randint(0, 80), "created": datetime.now().isoformat()})
+    actors.loc[len(actors)] = {"id":str(uuid.uuid4()), "name": cat_names.sample().Name.values[0], "age": randint(0, 20), "created": datetime.now().isoformat(), "category": "pirate"}
 
-logging.info(f"Generated Cats")
-logging.info(cats[0])
 
-logging.info(f"Generated Pirates")
-logging.info(zombies[0])
-
-logging.info(f"Generated Zombies")
-logging.info(pirates[0])
-
-logging.info("Saving")
+logging.info("...Saving")
+actors.to_csv(path.join("data", "actors.tsv"), sep="\t")
 json.dump(obj=cats, fp=open(path.join("data", "cats.json"), "w"), indent=1)     
 json.dump(obj=pirates, fp=open(path.join("data", "pirates.json"), "w"), indent=1)     
 json.dump(obj=zombies, fp=open(path.join("data", "zombies.json"), "w"), indent=1)     
