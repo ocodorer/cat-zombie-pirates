@@ -1,4 +1,4 @@
-	id	name	age	created	category
+index	id	name	age	created	category
 0	7809c129-36c8-41ae-a9fe-58e643117f9c	Vermundo	7	2023-04-23T06:45:42.710443	cat
 1	87f0d7b5-783d-4b72-89dd-e7873770cf99	Blackbeard	10	2023-04-23T06:45:42.711005	cat
 2	6d786a2c-38ad-4db9-8b5f-2f8b24b21489	Murphy	3	2023-04-23T06:45:42.712094	cat
